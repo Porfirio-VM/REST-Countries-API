@@ -1,0 +1,22 @@
+.header-section{
+    width: 100%;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+}
+
+.header-section h1{
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.theme-switcher{
+    gap: .5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.icon{
+    vertical-align: middle;
+}

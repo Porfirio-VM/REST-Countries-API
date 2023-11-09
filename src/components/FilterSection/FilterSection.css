@@ -1,0 +1,24 @@
+.filter-section{
+    margin-bottom: 1.5rem;
+}
+
+.filter-wrapper{
+    justify-content: space-between;
+}
+
+.input-wrapper{
+    padding: .5rem 1rem;
+    border-radius: 8px;
+}
+
+.input-wrapper input{
+    border: none;
+    background: none;
+}
+
+.filter-region{
+    padding: .5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+}
