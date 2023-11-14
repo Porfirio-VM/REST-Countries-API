@@ -7,7 +7,7 @@ function Header(){
 
     const navigate = useNavigate();
     const { defaultTheme, changeTheme } = useContext( themeContext );
-    const { bgElements, fontColor, moon } = defaultTheme;
+    const { bgElements, fontColor, moon, } = defaultTheme;
 
     const returnHome = () =>{
         navigate('/');

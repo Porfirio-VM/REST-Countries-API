@@ -5,11 +5,12 @@
 }
 
 .header-section h1{
-    font-size: 17px;
+    font-size: 19px;
     cursor: pointer;
 }
 
 .theme-switcher{
+    align-items: center;
     gap: .5rem;
     background: none;
     border: none;

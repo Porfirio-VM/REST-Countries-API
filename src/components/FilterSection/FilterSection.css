@@ -1,23 +1,37 @@
 .filter-section{
+    width: 100%;
     margin-bottom: 1.5rem;
 }
 
 .filter-wrapper{
+    gap: 1rem;
+    width: 100%;
     justify-content: space-between;
 }
+
 
 .input-wrapper{
     padding: .5rem 1rem;
     border-radius: 8px;
+    gap: .5rem;
+}
+
+.input-wrapper img{
+    vertical-align: middle;
 }
 
 .input-wrapper input{
+    width: 100%;
+    font-size: 2.3vh;
     border: none;
     background: none;
 }
 
+.input-wrapper input:focus{
+    outline: none;
+}
+
 .filter-region{
-    padding: .5rem 1rem;
     border-radius: 8px;
     border: none;
     font-weight: 600;

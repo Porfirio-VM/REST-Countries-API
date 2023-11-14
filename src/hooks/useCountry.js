@@ -1,8 +1,10 @@
-import { useMemo, useEffect, useContext, useState } from 'react';
+import { useMemo, useEffect, useContext, useState, useRef } from 'react';
 import { CountryContext } from './CountryProvider';
 import { API_URL_ALL, API_URL_BY_NAME, API_URL_BY_REGION } from '../constants/constants';
 
 function useCountry() {
+  const isFirstInput = useRef(true)
+  const [initialFetchDone, setInitialFetchDone] = useState(false);
   const [search, setSearch] = useState('');
   const [filteredRegion, setFilteredRegion] = useState()
   const { countryList, setCountryList } = useContext(CountryContext);
@@ -13,32 +15,43 @@ function useCountry() {
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
-        setCountryList(data);
+        const slicedData = data.slice(0, 100)
+        setCountryList(slicedData);
+        setInitialFetchDone(true);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
-  useEffect(() => {
-    // Primer renderizado de todos los países.
-    fetchData(API_URL_ALL);
-  }, [setCountryList]);
+
+  const firstCountryRender = useMemo(() =>{
+    if(!initialFetchDone){
+       fetchData(API_URL_ALL)
+    }
+    return countryList
+  },[initialFetchDone])
+
 
   useEffect(() => {
+    if(isFirstInput.current){
+      isFirstInput.current = search === ''
+      return
+    }
     if (search && search.length > 2) {
       // Realizar búsqueda por nombre si se ingresan al menos 3 caracteres.
       fetchData(API_URL_BY_NAME(search));
-    } else if (search === '') {
-      // Restaurar la lista completa de países si el campo de búsqueda se borra.
-      fetchData(API_URL_ALL);
     }
-  }, [search, setCountryList]);
+    if (!search) {
+      // Restaurar la lista completa de países si el campo de búsqueda se borra.
+      setCountryList(firstCountryRender)
+    }
+  }, [search]);
 
   useEffect(() => {
     if (filteredRegion) {
       if (filteredRegion === "ALL") {
-        fetchData(API_URL_ALL);
+        setCountryList(firstCountryRender)
       } else {
         fetchData(API_URL_BY_REGION(filteredRegion));
       }
@@ -46,22 +59,18 @@ function useCountry() {
   }, [filteredRegion])
   
 
-  const searchCountry = (e) => {
+  const searchByName = (e) => {
     const searchValue = e.target.value.trim();
     if (searchValue.startsWith(' ')) return;
     setSearch(searchValue);
   };
 
-  const filterByRegion = (e) =>{
+  const searchByRegion = (e) =>{
     const filterValue = e.target.value;
-   setFilteredRegion(filterValue)
+    setFilteredRegion(filterValue)
   }
 
-  const countryListMemo = useMemo(() => {
-    return countryList;
-  }, [countryList]);
-
-  return { countryList: countryListMemo, searchCountry , filterByRegion};
+  return { countryList, searchByName, searchByRegion};
 }
 
 export default useCountry;

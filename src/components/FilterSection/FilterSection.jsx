@@ -7,8 +7,8 @@ import { REGIONS } from '../../constants/constants'
 function FilterSection(){
 
     const { defaultTheme } = useContext(themeContext);
-    const { bgElements, shadow, fontColor } = defaultTheme;
-    const { searchCountry, filterByRegion } = useCountry();
+    const { bgElements, shadow, fontColor, search } = defaultTheme;
+    const { searchByName, searchByRegion } = useCountry();
 
     const inputStyles = {
         backgroundColor: bgElements,
@@ -24,10 +24,11 @@ function FilterSection(){
     return (
         <section className='filter-section'>
             <form action="" className="flex filter-wrapper">
-                <label htmlFor="country" className='input-wrapper' style={inputStyles}>
-                    <input type="text" id='country' placeholder="Search for a country..." onChange={(e) => searchCountry(e)} />
+                <label htmlFor="country" className='flex input-wrapper' style={inputStyles}>
+                    <img src={search} alt="" />
+                    <input type="text" id='country' placeholder="Search for a country..." onChange={(e) => searchByName(e)} />
                 </label>
-                <select name="" id="" style={selectStyles} onChange={(e) => filterByRegion(e)} className='filter-region'>
+                <select name="" id="" style={selectStyles} onChange={(e) => searchByRegion(e)} className='filter-region'>
                 <option defaultValue="" hidden>Filter by region</option>
                     {
                         REGIONS.map( region => (
