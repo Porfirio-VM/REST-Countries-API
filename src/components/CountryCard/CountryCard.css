@@ -1,0 +1,23 @@
+.country{
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 250px;
+}
+
+.country img{
+    object-position: center;
+    object-fit: cover;
+    min-width: 18em;
+    height: 50%;
+}
+
+.info-wrapper{
+    padding: 1rem;
+}
+
+.info-wrapper h2{
+    font-size: 16px;
+    margin-bottom: .5rem;
+}

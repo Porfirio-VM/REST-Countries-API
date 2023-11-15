@@ -1,5 +1,5 @@
 import { useMemo, useEffect, useContext, useState, useRef } from 'react';
-import { CountryContext } from './CountryProvider';
+import { countryContext } from './CountryProvider';
 import { API_URL_ALL, API_URL_BY_NAME, API_URL_BY_REGION } from '../constants/constants';
 
 function useCountry() {
@@ -7,7 +7,7 @@ function useCountry() {
   const [initialFetchDone, setInitialFetchDone] = useState(false);
   const [search, setSearch] = useState('');
   const [filteredRegion, setFilteredRegion] = useState()
-  const { countryList, setCountryList } = useContext(CountryContext);
+  const { countryList, setCountryList } = useContext(countryContext);
 
   // Función para realizar solicitudes a la API
   const fetchData = async (url) => {
@@ -38,14 +38,13 @@ function useCountry() {
       isFirstInput.current = search === ''
       return
     }
-    if (search && search.length > 2) {
-      // Realizar búsqueda por nombre si se ingresan al menos 3 caracteres.
-      fetchData(API_URL_BY_NAME(search));
-    }
-    if (!search) {
-      // Restaurar la lista completa de países si el campo de búsqueda se borra.
-      setCountryList(firstCountryRender)
-    }
+      if (search && search.length >= 3) {
+        // Realizar búsqueda por nombre si se ingresan al menos 3 caracteres.
+        fetchData(API_URL_BY_NAME(search));
+      }else{
+        // Restaurar la lista completa de países si el campo de búsqueda se borra.
+        setCountryList(firstCountryRender)
+      }
   }, [search]);
 
   useEffect(() => {

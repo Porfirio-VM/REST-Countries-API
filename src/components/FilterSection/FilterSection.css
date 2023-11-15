@@ -16,11 +16,8 @@
     gap: .5rem;
 }
 
-.input-wrapper img{
-    vertical-align: middle;
-}
-
 .input-wrapper input{
+    color: inherit;
     width: 100%;
     font-size: 2.3vh;
     border: none;
@@ -32,6 +29,7 @@
 }
 
 .filter-region{
+    cursor: pointer;
     border-radius: 8px;
     border: none;
     font-weight: 600;

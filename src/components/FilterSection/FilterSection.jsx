@@ -13,6 +13,7 @@ function FilterSection(){
     const inputStyles = {
         backgroundColor: bgElements,
         boxShadow: shadow,
+        color: fontColor
     };
 
     const selectStyles = {
@@ -25,7 +26,7 @@ function FilterSection(){
         <section className='filter-section'>
             <form action="" className="flex filter-wrapper">
                 <label htmlFor="country" className='flex input-wrapper' style={inputStyles}>
-                    <img src={search} alt="" />
+                    <img src={search} alt="" className='icon'/>
                     <input type="text" id='country' placeholder="Search for a country..." onChange={(e) => searchByName(e)} />
                 </label>
                 <select name="" id="" style={selectStyles} onChange={(e) => searchByRegion(e)} className='filter-region'>
