@@ -29,7 +29,7 @@ function FilterSection(){
                     <img src={search} alt="" className='icon'/>
                     <input type="text" id='country' placeholder="Search for a country..." onChange={(e) => searchByName(e)} />
                 </label>
-                <select name="country" id="country" style={selectStyles} onChange={(e) => searchByRegion(e)} className='filter-region'>
+                <select name="country" id="country-selecr" style={selectStyles} onChange={(e) => searchByRegion(e)} className='filter-region'>
                 <option defaultValue="" hidden>Filter by region</option>
                     {
                         REGIONS.map( region => (
