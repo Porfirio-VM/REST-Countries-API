@@ -1,14 +1,14 @@
 import { useContext } from 'react'
 import './FilterSection.css'
 import { themeContext } from '../../hooks/ThemeProvider'
-import useCountry from '../../hooks/useCountry'
 import { REGIONS } from '../../constants/constants'
+import { countryContext } from '../../hooks/CountryProvider';
 
 function FilterSection(){
 
     const { defaultTheme } = useContext(themeContext);
     const { bgElements, shadow, fontColor, search } = defaultTheme;
-    const { searchByName, searchByRegion } = useCountry();
+    const { searchByName, searchByRegion } = useContext(countryContext)
 
     const inputStyles = {
         backgroundColor: bgElements,
@@ -29,7 +29,7 @@ function FilterSection(){
                     <img src={search} alt="" className='icon'/>
                     <input type="text" id='country' placeholder="Search for a country..." onChange={(e) => searchByName(e)} />
                 </label>
-                <select name="" id="" style={selectStyles} onChange={(e) => searchByRegion(e)} className='filter-region'>
+                <select name="country" id="country" style={selectStyles} onChange={(e) => searchByRegion(e)} className='filter-region'>
                 <option defaultValue="" hidden>Filter by region</option>
                     {
                         REGIONS.map( region => (

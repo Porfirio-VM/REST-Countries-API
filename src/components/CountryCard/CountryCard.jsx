@@ -7,7 +7,7 @@ import { countryContext } from '../../hooks/CountryProvider';
 function CountryCard(){
     const navigate = useNavigate()
     const { defaultTheme } = useContext(themeContext);
-    const { countryList } = useContext(countryContext)
+    const { countryList } = useContext(countryContext);
     const { bgElements, shadow, fontColor } = defaultTheme;
 
 

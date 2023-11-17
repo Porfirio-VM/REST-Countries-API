@@ -1,13 +1,12 @@
 import { useMemo, useEffect, useContext, useState, useRef } from 'react';
-import { countryContext } from './CountryProvider';
 import { API_URL_ALL, API_URL_BY_NAME, API_URL_BY_REGION } from '../constants/constants';
 
 function useCountry() {
+  const [countryList, setCountryList] = useState([])
   const isFirstInput = useRef(true)
   const [initialFetchDone, setInitialFetchDone] = useState(false);
   const [search, setSearch] = useState('');
   const [filteredRegion, setFilteredRegion] = useState()
-  const { countryList, setCountryList } = useContext(countryContext);
 
   // Función para realizar solicitudes a la API
   const fetchData = async (url) => {
@@ -23,7 +22,6 @@ function useCountry() {
       console.error('Error fetching data:', error);
     }
   };
-
 
   const firstCountryRender = useMemo(() =>{
     if(!initialFetchDone){
