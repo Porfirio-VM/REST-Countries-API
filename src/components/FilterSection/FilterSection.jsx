@@ -25,11 +25,11 @@ function FilterSection(){
     return (
         <section className='filter-section'>
             <form action="" className="flex filter-wrapper">
-                <label htmlFor="country" className='flex input-wrapper' style={inputStyles}>
+                <label htmlFor="country-select" className='flex input-wrapper' style={inputStyles}>
                     <img src={search} alt="" className='icon'/>
                     <input type="text" id='country' placeholder="Search for a country..." onChange={(e) => searchByName(e)} />
                 </label>
-                <select name="country" id="country-selecr" style={selectStyles} onChange={(e) => searchByRegion(e)} className='filter-region'>
+                <select  name="country-selector" id="country-select" style={selectStyles} onChange={(e) => searchByRegion(e)} className='filter-region'>
                 <option defaultValue="" hidden>Filter by region</option>
                     {
                         REGIONS.map( region => (
